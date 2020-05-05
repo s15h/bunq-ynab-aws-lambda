@@ -3,16 +3,17 @@ import requests
 import uuid
 
 from common import log_request, log_reply
-from config import configuration
+from config import Configuration
 from decimal import Decimal
 from logger import configure_logger
 
 LOGGER = configure_logger(__name__)
 
+
 class ynabapi:
     def __init__(self, configlocation):
-        self.config = configuration(configlocation)
-        self.url    = 'https://api.youneedabudget.com/'
+        self.config = Configuration(configlocation)
+        self.url = 'https://api.youneedabudget.com/'
 
     def call(self, action, method, data_obj=None):
         data = json.dumps(data_obj) if data_obj else ''
@@ -65,7 +66,7 @@ class ynabapi:
             milliunits = str((1000 * Decimal(t["amount"])).quantize(1))
             # Calculate import_id for YNAB duplicate detection
             occurrence = 1 + len([y for y in ynab_transactions
-                        if y["amount"] == milliunits and y["date"] == t["date"]])
+                                  if y["amount"] == milliunits and y["date"] == t["date"]])
             ynab_transactions.append({
                 "account_id": account_id,
                 "date": t["date"],
@@ -90,10 +91,10 @@ class ynabapi:
     def print_accounts(self, budget_id):
         result = self.get("v1/budgets/" + budget_id + "/accounts")
         for a in result["accounts"]:
-            balance = Decimal(a["balance"])/Decimal(1000)
+            balance = Decimal(a["balance"]) / Decimal(1000)
             LOGGER.info("  {0:10,}  {1:<25} ({2})".format(
                 balance, a["name"], a["type"]))
-    
+
     def list_budget(self):
         result = self.get("v1/budgets")
         for b in result["budgets"]:

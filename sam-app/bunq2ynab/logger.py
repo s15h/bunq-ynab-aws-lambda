@@ -1,6 +1,7 @@
 import logging
 import os
 
+
 def configure_logger(logger_name):
     """Configures a generic logger which can be imported and used as needed
     """

@@ -14,7 +14,7 @@ Resources:
     Properties:
       CodeUri: bunq2ynab/
       Handler: app.lambda_handler
-      Runtime: python3.7
+      Runtime: python3.8
       Environment: 
         Variables: 
           SSM_PARAM: '/lambda/bunq2ynab'

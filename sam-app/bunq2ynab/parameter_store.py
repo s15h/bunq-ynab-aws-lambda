@@ -4,6 +4,7 @@ from logger import configure_logger
 
 LOGGER = configure_logger(__name__)
 
+
 class ParameterStore:
     """Class used for modeling Parameters
     """

@@ -1,8 +1,9 @@
-import json 
+import json
 
 from logger import configure_logger
 
 LOGGER = configure_logger(__name__)
+
 
 def log_request(action, method, headers, data):
     LOGGER.debug("{0} {1}".format(action, method))
@@ -10,6 +11,7 @@ def log_request(action, method, headers, data):
         LOGGER.debug("  {0}: {1}".format(k, v))
     if data:
         LOGGER.debug(json.dumps(data, indent=2))
+
 
 def log_reply(reply):
     LOGGER.debug("Status: {0}".format(reply.status_code))

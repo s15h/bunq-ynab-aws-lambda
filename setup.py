@@ -6,8 +6,8 @@ with open("README.md") as fp:
 
 
 setuptools.setup(
-    name="hello",
-    version="0.0.1",
+    name="bunq2ynab",
+    version="0.1.0",
 
     description="A sample CDK Python app",
     long_description=long_description,
@@ -25,6 +25,7 @@ setuptools.setup(
         "aws-cdk.aws_sns",
         "aws-cdk.aws_sns_subscriptions",
         "aws-cdk.aws_s3",
+        "bunq-sdk",
     ],
 
     python_requires=">=3.6",
